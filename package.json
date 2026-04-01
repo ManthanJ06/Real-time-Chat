@@ -1,0 +1,19 @@
+{
+  "name": "chat-app-vite",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "server": "node server.js",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "concurrently": "^8.2.2",
+    "cors": "^2.8.6",
+    "express": "^4.22.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.3.3",
+    "socket.io": "^4.8.3"
+  }
+}
