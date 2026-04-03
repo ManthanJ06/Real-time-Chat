@@ -25,6 +25,10 @@ const User = mongoose.model("User", {
   password: String,
 });
 
+app.get("/", (req, res) => {
+  res.send("Backend is running 🚀");
+});
+
 // REGISTER
 app.post("/register", async (req, res) => {
   try {
