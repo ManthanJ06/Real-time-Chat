@@ -5,17 +5,20 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { Server } = require("socket.io");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Replace with your Atlas connection string
+const uri = process.env.MONGO_URI;
 // ✅ DB CONNECT (with error handling)
 mongoose
-  .connect("mongodb://127.0.0.1:27017/chatapp")
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.log(err));
-
+  .connect(uri)
+  .then(() => console.log("✅ MongoDB Atlas Connected"))
+  .catch((err) => console.log("❌ Connection Error:", err));
 // USER MODEL
 const User = mongoose.model("User", {
   username: String,
