@@ -10,7 +10,12 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST"],
+  }),
+);
 
 // Replace with your Atlas connection string
 const uri = process.env.MONGO_URI;
@@ -57,7 +62,7 @@ app.post("/login", async (req, res) => {
     const valid = await bcrypt.compare(password, user.password);
     if (!valid) return res.status(400).send("Wrong password");
 
-    const token = jwt.sign({ username }, "SECRET");
+    const token = jwt.sign({ username }, process.env.JWT_SECRET);
 
     res.send({ token, username });
   } catch (err) {
@@ -70,7 +75,9 @@ app.post("/login", async (req, res) => {
 const server = http.createServer(app);
 
 const io = new Server(server, {
-  cors: { origin: "http://localhost:5173" },
+  cors: {
+    origin: "*",
+  },
 });
 
 let users = {}; // username -> socket.id

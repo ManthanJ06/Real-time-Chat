@@ -12,7 +12,7 @@ function Chat({ username }) {
   const [messages, setMessages] = useState({});
 
   useEffect(() => {
-    const socket = io("http://localhost:5000");
+    const socket = io("https://real-time-chat-vaoo.onrender.com");
     socketRef.current = socket;
 
     socket.emit("join", username);
