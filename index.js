@@ -115,8 +115,8 @@ io.on("connection", (socket) => {
     io.emit("users", Object.keys(users));
   });
 });
-
+const PORT = process.env.PORT || 5000;
 // START SERVER
-server.listen(5000, () => {
-  console.log("Server running on http://localhost:5000");
+server.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
