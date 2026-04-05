@@ -24,16 +24,19 @@ function App() {
       setLoading(true);
 
       if (mode === "login") {
-        const res = await axios.post("http://localhost:5000/login", {
-          username,
-          password,
-        });
+        const res = await axios.post(
+          "https://real-time-chat-vaoo.onrender.com/login",
+          {
+            username,
+            password,
+          },
+        );
 
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("username", res.data.username);
         setUser(res.data.username);
       } else {
-        await axios.post("http://localhost:5000/register", {
+        await axios.post("https://real-time-chat-vaoo.onrender.com/register", {
           username,
           password,
         });
